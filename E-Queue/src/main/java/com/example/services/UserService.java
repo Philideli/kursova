@@ -9,4 +9,7 @@ public interface UserService {
 
     boolean checkPassword(User user, String password);
 
+    Integer getNumberOfUsers();
+
+    void newUser(String login, String password, Integer id);
 }

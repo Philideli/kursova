@@ -7,6 +7,7 @@
 
     <welcome-file-list>
         <welcome-file>login.jsp</welcome-file>
+        <welcome-file>registration.jsp</welcome-file>
     </welcome-file-list>
 
     <listener>
@@ -96,5 +97,22 @@
         <url-pattern>/NextQueue</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>DetailsQueueServlet</servlet-name>
+        <servlet-class>com.example.controllers.DetailsQueueServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DetailsQueueServlet</servlet-name>
+        <url-pattern>/DetailsQueueServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>NewUser</servlet-name>
+        <servlet-class>com.example.controllers.NewUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NewUser</servlet-name>
+        <url-pattern>/NewUser</url-pattern>
+    </servlet-mapping>
 
 </web-app>

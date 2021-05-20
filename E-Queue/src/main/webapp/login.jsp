@@ -13,7 +13,7 @@
         <div class="form">
         <h2>Log In</h2>
         <br>
-        <form class="login-form" action="${pageContext.request.contextPath}/LogInServlet" method="POST">
+        <form class="login-form" action="LogInServlet" method="POST">
             <!--<label for="login">Логин</label>-->
             <input type="text" placeholder="Введите логин" name="login" id="login">
             <br>
@@ -23,7 +23,9 @@
             <input type="submit" value="Войти">
         </form>
         <br>
-            <p class="message"><a href="registration.html"><h3>Зарегистрироваться</h3></a></p>
+            <p class="message">
+            <h3><a href="registration.jsp">Зарегистрироваться</a></h3>
+            </p>
         </div>
     </div>
 </body>

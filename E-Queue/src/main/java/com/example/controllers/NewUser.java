@@ -1,6 +1,5 @@
 package com.example.controllers;
 
-import com.example.model.MyQueue;
 import com.example.model.User;
 import com.example.services.QueueService;
 import com.example.services.UserService;
@@ -12,36 +11,40 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class DeleteFromQueue extends HttpServlet {
+public class NewUser extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html");
+
+        request.getSession().invalidate();
 
         ServletContext context = getServletContext();
-        QueueService queueService = (QueueService) context.getAttribute("queueService");
         UserService userService = (UserService) context.getAttribute("userService");
 
-        if(request.getParameter("idDel") == null) {
+        String log = request.getParameter("login");
+        String pass = request.getParameter("password");
+
+        if(log == null) {
             request.getRequestDispatcher("/WEB-INF/jsp/errorpage.jsp").forward(request, response);
             return;
         }
 
-        if(request.getParameter("del") == null) {
+        if(pass == null) {
             request.getRequestDispatcher("/WEB-INF/jsp/errorpage.jsp").forward(request, response);
             return;
         }
 
-        User userLogin = userService.getByLogin(request.getParameter("del"));
-        MyQueue queueId = queueService.getQueuesById(Integer.parseInt(request.getParameter("idDel")));
-        if (queueService.findInQueue(queueId, userLogin) &&
-                queueService.isChangeable(queueId) &&
-                queueService.isAdmin((User) request.getSession().getAttribute("user"), queueId)){
-            queueService.deleteFromQueue(queueId, userLogin);
-            request.getRequestDispatcher("/DetailsQueueServlet").forward(request, response);
-        }
-        else{
-            request.getRequestDispatcher("/WEB-INF/jsp/errorpage.jsp").forward(request, response);
-        }
+        Integer id = userService.getNumberOfUsers() + 1;
+
+        userService.newUser(log, pass, id);
+
+        User user = userService.getByLogin(log);
+
+        request.getSession().setAttribute("user", user);
+
+        request.getRequestDispatcher("/WEB-INF/jsp/menu.jsp").forward(request, response);
+        //request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 
     @Override

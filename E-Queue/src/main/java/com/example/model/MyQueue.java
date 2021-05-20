@@ -1,5 +1,6 @@
 package com.example.model;
 import java.util.LinkedList;
+import java.util.Objects;
 import java.util.Queue;
 
 public class MyQueue {
@@ -86,5 +87,20 @@ public class MyQueue {
         return "Muttable";
         else
             return "Immutable";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MyQueue myQueue = (MyQueue) o;
+        return changeable == myQueue.changeable && Objects.equals(id, myQueue.id) &&
+                Objects.equals(name, myQueue.name) && Objects.equals(queue, myQueue.queue) &&
+                Objects.equals(admin, myQueue.admin);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, queue, admin, changeable);
     }
 }

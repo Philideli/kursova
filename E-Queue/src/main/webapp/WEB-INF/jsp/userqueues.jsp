@@ -11,20 +11,19 @@
 <div class="login-page">
     <div class="form">
         <h2>Мои очереди</h2>
+
+        <form class="login-form" action="DetailsQueueServlet" method="POST">
+            <input type="submit" value="Редактировать очереди">
+        </form>
+
         <c:forEach var="queue" varStatus="curr" items="${userqueues}">
             <h3>Очередь ${queue.getId()}          ${queue.getName()}</h3>
             <h3>${queue.printChangeable()}</h3>
             <br>
-            <form class="login-form" action="MuteQueue" method="POST">
-                <input type="hidden" value="${queue.getId()}" name="idMute" id="idMute">
-                <input type="submit" value="Изменить статус очереди">
-            </form>
 
-            <form class="login-form" action="NextQueue" method="POST">
-                <input type="hidden" value="${queue.getId()}" name="idNext" id="idNext">
-                <input type="submit" value="Сдвинуть очередь">
-            </form>
-
+        <details>
+            <summary>Просмотреть больше информации</summary>
+            <br>
             <table>
                 <tr>
                     <th>Номер</th>
@@ -35,16 +34,10 @@
                         <th>${queue.numberInQueue(user)}</th>
                         <th>${user.getLogin()}</th>
                         <th><pre>        </pre></th>
-
-                        <th><form class="login-form" action="DeleteFromQueue" method="POST">
-                            <input type="hidden" value="${queue.getId()}" name="idDel" id="idDel">
-                            <input type="hidden" value="${user.getLogin()}" name="del" id="del">
-                            <input type="submit" value="Удалить из очереди">
-                        </form></th>
-
                     </tr>
                 </c:forEach>
             </table>
+        </details>
             <hr>
         </c:forEach>
         <br>

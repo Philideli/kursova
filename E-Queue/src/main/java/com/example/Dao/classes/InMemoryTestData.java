@@ -10,34 +10,37 @@ public class InMemoryTestData {
         database.queues.clear();
         database.users.clear();
 
-        User lubitelIzuma = new User("izumchik", "kapets", "+380999999999", 1);
-        User nelubitelIzuma = new User("neizumchik", "kruto", "+380888888888", 2);
-        User first = new User("FirstUser", "kruto", "+380888888888", 3);
-        User second = new User("SecondUser", "kruto", "+380888888888", 4);
-        User third = new User("ThirdUser", "kruto", "+380888888888", 5);
+        User first = new User("FirstUser", "first", 1);
+        User second = new User("SecondUser", "second", 2);
+        User third = new User("ThirdUser", "third", 3);
+        User fourth = new User("FourthUser","fourth",4);
+        User fifth = new User("FifthUser","fifth",4);
 
-        User admin = new User("admin", "admin", "+38000000000", 6);
+        MyQueue q1 = new MyQueue("firstQueue", first, 1);
+        MyQueue q2 = new MyQueue("secondQueue", first, 2);
+        MyQueue q3 = new MyQueue("thirdQueue", second, 3);
 
-        MyQueue izum = new MyQueue("firstQueue", lubitelIzuma, 1);
-        MyQueue voda = new MyQueue("secondQueue", lubitelIzuma, 2);
+        q1.addPerson(first);
+        q1.addPerson(second);
+        q1.addPerson(third);
+        q1.addPerson(fourth);
+        q1.addPerson(fifth);
 
-        izum.addPerson(lubitelIzuma);
-        izum.addPerson(nelubitelIzuma);
-        izum.addPerson(first);
-        izum.addPerson(second);
-        izum.addPerson(third);
+        q2.addPerson(second);
+        q2.addPerson(fifth);
+        q2.addPerson(first);
 
-        voda.addPerson(second);
-        voda.addPerson(nelubitelIzuma);
-        voda.addPerson(first);
+        q3.addPerson(fourth);
+        q3.addPerson(fifth);
 
-        database.users.put(lubitelIzuma.getId(), lubitelIzuma);
-        database.users.put(nelubitelIzuma.getId(), nelubitelIzuma);
         database.users.put(first.getId(), first);
         database.users.put(second.getId(), second);
         database.users.put(third.getId(), third);
+        database.users.put(fourth.getId(), fourth);
+        database.users.put(fifth.getId(), fifth);
 
-        database.queues.put(izum.getId(), izum);
-        database.queues.put(voda.getId(), voda);
+        database.queues.put(q1.getId(), q1);
+        database.queues.put(q2.getId(), q2);
+        database.queues.put(q3.getId(), q3);
     }
 }

@@ -16,7 +16,7 @@
 <body>
 <div class="login-page">
     <div class="form">
-        <h2>Что-то пошло не так!</h2>
+        <h2>Неверный логин или пароль!</h2>
         <img src="img/browser.png" width="200px">
         <br><br><br>
         <a href="login.jsp">Вернуться</a>

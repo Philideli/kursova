@@ -25,7 +25,7 @@ public class MuteQueue extends HttpServlet {
         if (queueService.isAdmin((User) request.getSession().getAttribute("user"), queueId))
         {
             queueService.muteQueue(queueId);
-            request.getRequestDispatcher("/WEB-INF/jsp/success.jsp").forward(request, response);
+            request.getRequestDispatcher("/DetailsQueueServlet").forward(request, response);
         }
         else{
             request.getRequestDispatcher("/WEB-INF/jsp/errorpage.jsp").forward(request, response);

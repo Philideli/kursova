@@ -13,27 +13,30 @@
     <h2>Все очереди</h2>
     <c:forEach var="queue" items="${allqueues}">
       <h3>Очередь номер ${queue.getId()}  ${queue.getName()}</h3>
-      <table>
-        <tr>
-          <th>Номер</th>
-          <th>Логин</th>
-        </tr>
-        <c:forEach var="user" items="${queue.getQueue()}">
+      <details>
+        <summary>Просмотреть больше информации</summary>
+        <br>
+        <table>
           <tr>
-            <th>${queue.numberInQueue(user)}</th>
-            <th>${user.getLogin()}</th>
+            <th>Номер</th>
+            <th>Логин</th>
           </tr>
-        </c:forEach>
-        <form class="login-form" action="AddToQueue" method="POST">
-          <input type="hidden" value="${queue.getId()}" name="idAdd" id="idAdd">
-          <input type="submit" value="Встать в очередь">
-        </form>
+          <c:forEach var="user" items="${queue.getQueue()}">
+            <tr>
+              <th>${queue.numberInQueue(user)}</th>
+              <th>${user.getLogin()}</th>
+            </tr>
+          </c:forEach>
+          <form class="login-form" action="AddToQueue" method="POST">
+            <input type="hidden" value="${queue.getId()}" name="idAdd" id="idAdd">
+            <input type="submit" value="Встать в очередь">
+          </form>
 
-      </table>
+        </table>
+      </details>
       <hr>
     </c:forEach>
     <br/>
-    <hr/>
 
     <form class="login-form" action="NewQueue" method="POST">
       <h3>Имя новой очереди</h3>

@@ -37,7 +37,7 @@ public class QueueServiceClass implements QueueService{
 
     @Override
     public boolean isChangeable(MyQueue queue) {
-        return daoFactory.isChangeable(queue);
+        return daoFactory.getQueueDao().isChangeable(queue);
     }
 
     @Override
@@ -47,22 +47,22 @@ public class QueueServiceClass implements QueueService{
 
     @Override
     public void deleteFromQueue(MyQueue queue, User user) {
-        daoFactory.deleteFromQueue(queue,user);
+        daoFactory.getQueueDao().deleteFromQueue(queue,user);
     }
 
     @Override
     public void muteQueue(MyQueue queue) {
-        daoFactory.muteQueue(queue);
+        daoFactory.getQueueDao().muteQueue(queue);
     }
 
     @Override
     public void nextQueue(MyQueue queue) {
-        daoFactory.nextQueue(queue);
+        daoFactory.getQueueDao().nextQueue(queue);
     }
 
     @Override
     public boolean isAdmin(User user, MyQueue queue) {
-        return daoFactory.isAdmin(user,queue);
+        return daoFactory.getQueueDao().isAdmin(user,queue);
     }
 
 
@@ -74,12 +74,12 @@ public class QueueServiceClass implements QueueService{
 
     @Override
     public void addToQueue(MyQueue queue,User user){
-        daoFactory.addToQueue(queue,user);
+        daoFactory.getQueueDao().addToQueue(queue,user);
     }
 
     @Override
     public boolean findInQueue(MyQueue queue, User user) {
-        return daoFactory.findInQueue(queue,user);
+        return daoFactory.getQueueDao().findInQueue(queue,user);
     }
 
 

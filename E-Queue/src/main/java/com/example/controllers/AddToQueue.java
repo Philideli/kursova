@@ -28,7 +28,7 @@ public class AddToQueue extends HttpServlet {
         if (!queueService.findInQueue(queueId, (User) request.getSession().getAttribute("user")) &&
                 queueService.isChangeable(queueId)){
             queueService.addToQueue(queueId, (User) request.getSession().getAttribute("user"));
-            request.getRequestDispatcher("/WEB-INF/jsp/success.jsp").forward(request, response);
+            request.getRequestDispatcher("/AllQueuesServlet").forward(request, response);
         }
         else{
             request.getRequestDispatcher("/WEB-INF/jsp/errorpage.jsp").forward(request, response);

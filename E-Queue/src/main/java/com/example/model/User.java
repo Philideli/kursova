@@ -1,16 +1,16 @@
 package com.example.model;
 
 
+import java.util.Objects;
+
 public class User {
     private String login;
     private String password;
-    private String phone;
     private Integer id;
 
-    public User(String login, String password, String phone, Integer id) {
+    public User(String login, String password, Integer id) {
         this.login = login;
         this.password = password;
-        this.phone = phone;
         this.id = id;
     }
 
@@ -20,14 +20,6 @@ public class User {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public String getLogin() {
@@ -46,4 +38,17 @@ public class User {
         this.password = password;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(login, user.login) && Objects.equals(password, user.password) &&
+                Objects.equals(id, user.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(login, password, id);
+    }
 }
